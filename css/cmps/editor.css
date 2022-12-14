@@ -6,7 +6,7 @@
 
 .canvas-container {
     width: 50vw;
-    height: 600px;
+    /* height: 600px; */
 }
 
 canvas {
@@ -19,5 +19,29 @@ canvas {
 
 input {
     height: 60px;
+    width: 370px;
     border-radius: 10px;
 }
+
+.input-controller {
+    margin-top: 10px;
+    width: 210px;
+}
+
+button {
+    display: flex;
+    /* margin-inline-end: 10px; */
+    margin-right: 20px;
+    height: 60px;
+    width: 60px;
+    border-radius: 10px;
+    border: 1px solid var(--clr2);
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 40px
+}
+
+/* i {
+    font-size: 40px;
+} */

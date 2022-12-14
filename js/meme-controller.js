@@ -16,7 +16,6 @@ function onRenderMeme(imgId) {
     elImg.src = img.url
     console.log('elImg', elImg)
     elImg.onload = () => {
-        console.log('elImg:', elImg)
         gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
     }
 }
@@ -24,4 +23,15 @@ function onRenderMeme(imgId) {
 function renderImgOnCanvas(img) {
     console.log('img:', img)
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+}
+
+function renderLines(){
+    const meme = getMeme()
+    meme.lines.array.forEach(line => {
+        gCtx.fillStyle = line.color
+        gCtx.font = `${line.size} arial`
+        gCtx.textAlign = line.align
+        const {x, y} = line.pos
+        gCtx.fillText(text, x, y)
+    });
 }

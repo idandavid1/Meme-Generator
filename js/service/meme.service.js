@@ -1,5 +1,25 @@
 'use strict'
 let gImgs = createGallery()
+let gMeme = createMeme(imgId)
+
+function createMeme(imgId, selectedLineIdx = 0){
+    return  { 
+            selectedImgId: imgId, 
+            selectedLineIdx,
+            lines: createLine({x:0, y:0}, 'hello', 20, center, 'red') 
+       }
+       
+}
+
+function createLine(pos, txt, size, align, color){
+    return {
+            pos,
+            txt, 
+            size,
+            align, 
+            color
+    }
+}
 
 function createGallery() {
     return [
