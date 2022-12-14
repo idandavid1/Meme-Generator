@@ -7,7 +7,7 @@ function initMemePage(imgId){
     gElCanvas = document.getElementById('my-canvas')
     gCtx = gElCanvas.getContext('2d')
     document.querySelector('.gallery').hidden = true;
-    document.querySelector('.editor').style.display = 'flex';
+    document.querySelector('.editor').hidden = false;
     createMeme(imgId)
     onRenderMeme()
 }

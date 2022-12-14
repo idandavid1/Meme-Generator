@@ -1,5 +1,35 @@
 
 .container-imgs {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 10;
+}
+
+@media (min-width: 600px) {
+    .container-imgs {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 10;
+    }
+    img {
+        width: 190px;
+    }
+}
+
+@media (min-width: 900px) {
+    .container-imgs {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 10;
+    }
+    img {
+        width: 290px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container-imgs {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 10;
+    }
+    img {
+        width: 290px;
+    }
 }

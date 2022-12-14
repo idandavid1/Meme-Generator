@@ -1,6 +1,24 @@
 
 .layout {
-    max-width: var(--l);
+    max-width: var(--xs);
     margin-left: auto;
     margin-right: auto;
+}
+
+@media (min-width: 600px) {
+    .layout {
+        max-width: var(--s);
+    }
+}
+
+@media (min-width: 900px) {
+    .layout {
+        max-width: var(--m);
+    }
+}
+
+@media (min-width: 1200px) {
+    .layout {
+        max-width: var(--l);
+    }
 }

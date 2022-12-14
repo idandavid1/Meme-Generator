@@ -1,24 +1,23 @@
 
 .editor {
     background-color: var(--clr3);
-    display: none;
+}
+
+.change-meme {
+    height: 500px;
+    gap: 20px;
 }
 
 .canvas-container {
-    width: 50vw;
-    height: 600px;
+    height: 500px;
 }
 
 canvas {
     background-color: aliceblue;
 }
 
-.change-meme {
-    width: 50vw;
-}
-
 .text {
-    width: 370px;
+    width: 330px;
 }
 
 input {
@@ -28,7 +27,6 @@ input {
 }
 
 .input-controller {
-    margin-top: 10px;
     width: 210px;
 }
 
@@ -45,7 +43,30 @@ button {
     font-size: 40px
 }
 
-.change-meme div{
-    width: 370px;
-    margin-bottom: 10px;
+@media (min-width: 600px) {
+    .text {
+        width: 370px;
+    }
+    .change-meme div{
+        width: 370px;
+        margin-bottom: 10px;
+    }
+    canvas {
+        width: 450;
+        height: 450;
+    }
+}
+
+@media (min-width: 900px) {
+    .canvas-container, change-meme {
+        width: 50vw;
+    }
+    canvas {
+        width: 450;
+        height: 450;
+    }
+    .editor .layout {
+        flex-direction: row;
+        height: 650px;
+    }
 }

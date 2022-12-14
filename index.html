@@ -25,35 +25,38 @@
         <div class="container-imgs grid">
         </div>
     </section>
-    <section class="editor">
-        <div class="canvas-container flex align-center justify-center">
-            <canvas id="my-canvas" width="400" height="400"></canvas>
-        </div>
-        <div class="change-meme">
-            <input class="text" type="text" placeholder="Enter text" oninput="onSetText(this)">
-            <div class="input-controller flex justify-center">
-                <button onclick="onSwitchLine()">↑↓</button>
-                <button onclick="onAddLine()"><i class="fa-solid fa-plus"></i></button>
-                <button onclick="onRemoveLine()"><i class="fa-solid fa-trash-can"></i></button>
+    <section class="editor" hidden>
+        <section class="layout flex flex-column">
+            <div class="canvas-container flex align-center justify-center">
+                <canvas id="my-canvas" width="350" height="350"></canvas>
             </div>
-            <div class="flex">
-                <button onclick="onChangeFontSize(1)"><i class="fa-solid fa-a"></i>+</button>
-                <button onclick="onChangeFontSize(-1)"><i class="fa-solid fa-a"></i>-</button>
-                <button onclick="onChangeAlign('right')"><i class="fa-solid fa-align-left"></i></button>
-                <button onclick="onChangeAlign('center')"><i class="fa-solid fa-align-justify"></i></button>
-                <button onclick="onChangeAlign('left')"><i class="fa-solid fa-align-right"></i></button>
+            <div class="change-meme flex flex-column align-center justify-center">
+                <input class="text" type="text" placeholder="Enter text" oninput="onSetText(this)">
+                <div class="input-controller flex justify-center">
+                    <button onclick="onSwitchLine()">↑↓</button>
+                    <button onclick="onAddLine()"><i class="fa-solid fa-plus"></i></button>
+                    <button onclick="onRemoveLine()"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+                <div class="flex">
+                    <button onclick="onChangeFontSize(1)"><i class="fa-solid fa-a"></i>+</button>
+                    <button onclick="onChangeFontSize(-1)"><i class="fa-solid fa-a"></i>-</button>
+                    <button onclick="onChangeAlign('right')"><i class="fa-solid fa-align-left"></i></button>
+                    <button onclick="onChangeAlign('center')"><i class="fa-solid fa-align-justify"></i></button>
+                    <button onclick="onChangeAlign('left')"><i class="fa-solid fa-align-right"></i></button>
+                </div>
+                <div class="flex justify-center">
+                    <input type="color" value="#ff0000" oninput="onSetColorText(this)">
+                    <button></button>
+                </div>
             </div>
-            <div class="flex">
-                <input type="color" value="#ff0000" oninput="onSetColorText(this)">
-                <button></button>
-            </div>
-        </div>
-    </section>
+        </section>
+        </section>
     <footer class="flex flex-column align-center justify-center">
         <h1 class="logo">memegen</h1>
         <div>all rights reserved 2019</div>
     </footer>
     <script src="js/service/meme.service.js"></script>
+    <script src="js/service/gallery.service.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js/meme-controller.js"></script>
     <script src="js/main.js"></script>
