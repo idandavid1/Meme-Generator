@@ -1,0 +1,23 @@
+
+.editor {
+    background-color: var(--clr3);
+    height: 600px;
+}
+
+.canvas-container {
+    width: 50vw;
+    height: 600px;
+}
+
+canvas {
+    background-color: aliceblue;
+}
+
+.change-meme {
+    width: 50vw;
+}
+
+input {
+    height: 60px;
+    border-radius: 10px;
+}

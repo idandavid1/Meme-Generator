@@ -10,4 +10,5 @@
 /* Cmps */
 @import './cmps/header.css';
 @import './cmps/gallery.css';
+@import './cmps/editor.css';
 @import './cmps/footer.css';
