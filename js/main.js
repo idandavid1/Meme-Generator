@@ -1,7 +1,7 @@
 'use strict'
 
 function OnInit(){
-    initMemePage()
+    document.querySelector('.editor').hidden = true;
     renderGallery()
 }
 

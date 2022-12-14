@@ -1,12 +1,12 @@
 
 .editor {
     background-color: var(--clr3);
-    height: 600px;
+    display: none;
 }
 
 .canvas-container {
     width: 50vw;
-    /* height: 600px; */
+    height: 600px;
 }
 
 canvas {
@@ -17,10 +17,14 @@ canvas {
     width: 50vw;
 }
 
+.text {
+    width: 370px;
+}
+
 input {
     height: 60px;
-    width: 370px;
     border-radius: 10px;
+    width: 60px;
 }
 
 .input-controller {
@@ -30,8 +34,7 @@ input {
 
 button {
     display: flex;
-    /* margin-inline-end: 10px; */
-    margin-right: 20px;
+    margin-left: 20px;
     height: 60px;
     width: 60px;
     border-radius: 10px;
@@ -42,6 +45,7 @@ button {
     font-size: 40px
 }
 
-/* i {
-    font-size: 40px;
-} */
+.change-meme div{
+    width: 370px;
+    margin-bottom: 10px;
+}

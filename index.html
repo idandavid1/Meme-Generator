@@ -25,23 +25,27 @@
         <div class="container-imgs grid">
         </div>
     </section>
-    <section class="editor flex" hidden>
+    <section class="editor">
         <div class="canvas-container flex align-center justify-center">
             <canvas id="my-canvas" width="400" height="400"></canvas>
         </div>
         <div class="change-meme">
-            <input type="text" placeholder="Enter text">
-            <div class="input-controller flex">
-                <button><i class="fa-solid fa-arrow-down-arrow-up"></i></button>
-                <button><i class="fa-solid fa-plus"></i></button>
-                <button><i class="fa-solid fa-trash-can"></i></button>
+            <input class="text" type="text" placeholder="Enter text" oninput="onSetText(this)">
+            <div class="input-controller flex justify-center">
+                <button onclick="onSwitchLine()">↑↓</button>
+                <button onclick="onAddLine()"><i class="fa-solid fa-plus"></i></button>
+                <button onclick="onRemoveLine()"><i class="fa-solid fa-trash-can"></i></button>
             </div>
             <div class="flex">
-                <button><i class="fa-solid fa-a"></i>+</button>
-                <button><i class="fa-solid fa-a"></i>-</button>
-                <button><i class="fa-solid fa-align-left"></i></button>
-                <button><i class="fa-solid fa-align-justify"></i></button>
-                <button><i class="fa-solid fa-align-right"></i></button>
+                <button onclick="onChangeFontSize(1)"><i class="fa-solid fa-a"></i>+</button>
+                <button onclick="onChangeFontSize(-1)"><i class="fa-solid fa-a"></i>-</button>
+                <button onclick="onChangeAlign('right')"><i class="fa-solid fa-align-left"></i></button>
+                <button onclick="onChangeAlign('center')"><i class="fa-solid fa-align-justify"></i></button>
+                <button onclick="onChangeAlign('left')"><i class="fa-solid fa-align-right"></i></button>
+            </div>
+            <div class="flex">
+                <input type="color" value="#ff0000" oninput="onSetColorText(this)">
+                <button></button>
             </div>
         </div>
     </section>

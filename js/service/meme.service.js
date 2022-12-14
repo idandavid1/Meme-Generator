@@ -1,12 +1,12 @@
 'use strict'
 let gImgs = createGallery()
-let gMeme = createMeme(imgId)
+let gMeme
 
 function createMeme(imgId, selectedLineIdx = 0){
-    return  { 
+    gMeme =  { 
             selectedImgId: imgId, 
             selectedLineIdx,
-            lines: createLine({x:0, y:0}, 'hello', 20, center, 'red') 
+            lines: [createLine({x:200, y:50}, 'hello', 50, 'center', 'red')] 
        }
        
 }
@@ -19,6 +19,30 @@ function createLine(pos, txt, size, align, color){
             align, 
             color
     }
+}
+
+function getMeme() {
+    return gMeme
+}
+
+function setLineTxt(text) {
+    gMeme.lines[gMeme.selectedLineIdx].txt = text
+}
+
+function addLine(pos) {
+    const line = createLine(pos, 'hello', 50, 'center', 'red')
+    gMeme.lines.push(line)
+    gMeme.selectedLineIdx += 1
+}
+
+function removeLine() {
+    if(!gMeme.lines.length) return
+    gMeme.lines.splice( gMeme.selectedLineIdx, 1)
+    gMeme.selectedLineIdx = 0
+}
+
+function isHaveLines(){
+    return gMeme.lines.length > 0 
 }
 
 function createGallery() {
@@ -51,4 +75,5 @@ function getImgs(){
 function findImgById(imgId) {
     return gImgs.find(img => img.id === imgId)
 }
+
 
