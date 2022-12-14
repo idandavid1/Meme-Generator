@@ -1,0 +1,13 @@
+/* Setup */
+@import './setup/vars.css';
+/* @import './setup/font-face.css'; */
+
+/* Basic */
+@import './basic/base.css';
+@import './basic/helpers.css';
+@import './basic/layout.css';
+
+/* Cmps */
+@import './cmps/header.css';
+@import './cmps/gallery.css';
+@import './cmps/footer.css';

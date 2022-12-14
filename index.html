@@ -7,9 +7,33 @@
     <link rel="stylesheet" href="css/main.css">
     <title>Meme Generator</title>
 </head>
-<body>
-    <section class="gallery"></section>
-    <section class="editor"></section>
+<body onload="OnInit()">
+    <header>
+        <div class="div-container flex align-center space-between layout">
+            <h1 class="logo">memegen</h1>
+            <nav>
+                <ul class="header-ul clean-list flex">
+                    <li>Gallery</li>
+                    <li>About</li>
+                </ul>
+            </nav>
+        </div>
+        
+    </header>
+    <section class="gallery layout">
+        <div class="container-imgs grid">
+        </div>
+    </section>
+    <section class="editor" hidden>
+        <div class="canvas-container">
+            <canvas></canvas>
+        </div>
+    </section>
+    <footer class="flex flex-column align-center justify-center">
+        <h1 class="logo">memegen</h1>
+        <div>all rights reserved 2019</div>
+    </footer>
+    <script src="js/service/meme.service.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

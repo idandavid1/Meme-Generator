@@ -1,0 +1,22 @@
+
+header {
+    width: 100%;
+    background-color: var(--clr0);
+    color: var(--clr1);
+}
+
+li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 66px;
+    height: 66px;
+    font-size: 19px;
+    font-family: Montserrat;
+    cursor: pointer;
+}
+
+li:hover {
+    color: var(--clr2);
+    border-bottom: 4px solid var(--clr2);
+}
