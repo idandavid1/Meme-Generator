@@ -1,5 +1,6 @@
 'use strict'
 
+let gIsSaveShareDownload
 let gEnd
 let gElCanvas
 let gCtx 
@@ -12,7 +13,7 @@ function initMemePage(input, fromStr){
     document.querySelector('.gallery').hidden = true;
     document.querySelector('.memes').hidden = true;
     document.querySelector('.editor').hidden = false;
-    if(fromStr === 'gallery') createMeme(input)
+    if(fromStr === 'gallery') createMeme(input, {x: gElCanvas.width / 2 , y: 50})
     else initMeme(input)
     onRenderMeme()
     gIsMove = false
@@ -29,7 +30,7 @@ function onRenderMeme() {
         gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
         renderLines()
         if(!gEnd) renderTextBox()
-        else onLoadImgSaveMeme()
+        else onLoadMeme()
     }
 }
 
@@ -37,7 +38,7 @@ function renderLines(){
     const meme = getMeme()
     meme.lines.forEach(line => {
         gCtx.fillStyle = line.color
-        gCtx.font = `${line.size}px Impact`
+        gCtx.font = `${line.size}px ${line.font}` 
         gCtx.textAlign = line.align
         const {x, y} = line.pos
         gCtx.fillText(line.txt, x, y)
@@ -59,7 +60,10 @@ function onChangeAlign(align) {
 
 function onAddLine() {
     const meme = getMeme()
-    const numberOfLine = meme.lines.length
+    let numberOfLine
+    if(meme.lines === []) numberOfLine = 0
+    else numberOfLine = meme.lines.length
+    if(numberOfLine > 4) return
     let y
     const x = gElCanvas.width / 2
     switch (numberOfLine) {
@@ -143,7 +147,6 @@ function addTouchListeners() {
 }
 
 function onDown() {
-    console.log('lkdcs:')
     gIsMove = true
     document.body.style.cursor = 'grabbing'
 }
@@ -191,16 +194,49 @@ function isTextBoxClicked(posClick) {
        return false
 }
 
-function onSaveMeme() {
+function onSaveShareDownloadMeme(str) {
+    gIsSaveShareDownload = str
     gEnd = true
     onRenderMeme()
-    document.querySelector('.memes').hidden = false;
-    document.querySelector('.editor').hidden = true;
 }
 
-function onLoadImgSaveMeme(){
+function onLoadMeme(){
+    if(gIsSaveShareDownload === 'save'){
+        const meme = getMeme()
+        meme.memeUrl =  gElCanvas.toDataURL('image/png')
+        saveMeme(meme)
+        onMoveToMemes()
+    }
+    else if(gIsSaveShareDownload === 'download'){
+        const img =  gElCanvas.toDataURL('image/jpeg')
+        var link = document.createElement('a')
+        link.download = "my-image.png"
+        link.href = img
+        link.click()
+    }
+    else {
+        const imgDataUrl = gElCanvas.toDataURL('image/jpeg')
+        function onSuccess(uploadedImgUrl) {
+            const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}`)
+        }
+        doUploadImg(imgDataUrl, onSuccess)
+        }
+}
+
+function doUploadImg(imgDataUrl, onSuccess) {
+    const formData = new FormData()
+    formData.append('img', imgDataUrl)
+    fetch('//ca-upload.com/here/upload.php', { method: 'POST', body: formData })
+        .then(res => res.text())
+        .then(url => {
+            onSuccess(url)
+        })
+}
+
+
+function onChangeFont(elFont) {
     const meme = getMeme()
-    meme.memeUrl =  gElCanvas.toDataURL('png')
-    saveMeme(meme)
-    onRenderMemes()
+    meme.lines[meme.selectedLineIdx].font = elFont.value
+    onRenderMeme()
 }

@@ -1,7 +1,19 @@
 'use strict'
 
+const KEYCOUNTMAP = 'countMap'
+let gKeywordSearchCountMap = createKeywordSearchCountMap()
 let gImgs = createGallery()
 let gFilterKeyword = ''
+
+function createKeywordSearchCountMap() {
+    let countMap = loadFromStorage(KEYCOUNTMAP)
+    if(!countMap) countMap = {'funny': 12,'cat': 16, 'baby': 10, 'dog': 15} 
+    return countMap
+}
+
+function getCountMap() {
+    return gKeywordSearchCountMap
+}
 
 function createGallery() {
     return [
@@ -12,13 +24,13 @@ function createGallery() {
         {id: 5, url: 'img/5.jpg', keywords: ['success', 'baby']},
         {id: 6, url: 'img/6.jpg', keywords: ['history', 'wired']},
         {id: 7, url: 'img/7.jpg', keywords: ['baby', 'cute', 'surprised']},
-        {id: 8, url: 'img/8.jpg', keywords: ['funny', 'cat']},
-        {id: 9, url: 'img/9.jpg', keywords: ['funny', 'magics']},
-        {id: 10, url: 'img/10.jpg', keywords: ['baby', 'cute', 'evil']},
-        {id: 11, url: 'img/11.jpg', keywords: ['funny', 'Obama', 'president']},
-        {id: 12, url: 'img/12.jpg', keywords: ['man', 'kiss']},
-        {id: 13, url: 'img/13.jpg', keywords: ['Haim', 'point']},
-        {id: 14, url: 'img/14.jpg', keywords: ['Leonardo', 'smile', 'cheers']},
+        {id: 8, url: 'img/8.jpg', keywords: ['funny', 'magics']},
+        {id: 9, url: 'img/9.jpg', keywords: ['baby', 'cute', 'evil']},
+        {id: 10, url: 'img/10.jpg', keywords: ['funny', 'Obama', 'president']},
+        {id: 11, url: 'img/11.jpg', keywords: ['man', 'kiss']},
+        {id: 12, url: 'img/12.jpg', keywords: ['Haim', 'point']},
+        {id: 13, url: 'img/13.jpg', keywords: ['Leonardo', 'smile', 'cheers']},
+        {id: 14, url: 'img/14.jpg', keywords: []},
         {id: 15, url: 'img/15.jpg', keywords: ['men', 'smile']},
         {id: 16, url: 'img/16.jpg', keywords: ['men', 'smile']},
         {id: 17, url: 'img/17.jpg', keywords: ['Putin', 'president', 'point']},
@@ -27,6 +39,7 @@ function createGallery() {
 }
 
 function getImgs() {
+    console.log('acc:')
     if(!gFilterKeyword) return gImgs
     const keywords = getRightKeyword(gFilterKeyword)
     return gImgs.reduce((acc, img) => {
@@ -48,8 +61,18 @@ function getRightKeyword(input) {
         keywords.forEach(keyword => {
             if(!keyword.indexOf(input)) {
                 if(!acc.includes(keyword)) acc.push(keyword)
+                if(keyword.length === input.length) updateMap(input)
             } 
         })
         return acc
     }, [])
+}
+
+function updateMap(keyWord){
+    if(gKeywordSearchCountMap[keyWord]) gKeywordSearchCountMap[keyWord] += 1
+    else gKeywordSearchCountMap[keyWord] = 1
+}
+
+function updateFilter(input) {
+    gFilterKeyword = input
 }

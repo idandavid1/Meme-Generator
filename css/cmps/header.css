@@ -21,3 +21,8 @@ li:hover {
     color: var(--clr2);
     border-bottom: 4px solid var(--clr2);
 }
+
+.curr-page {
+    color: var(--clr2);
+    border-bottom: 4px solid var(--clr2);
+}

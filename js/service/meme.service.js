@@ -10,23 +10,24 @@ function createMemes(){
     return memes
 }
 
-function createMeme(imgId, selectedLineIdx = 0, memeUrl = ''){
+function createMeme(imgId, pos, selectedLineIdx = 0, memeUrl = ''){
     gMeme =  { 
             selectedImgId: imgId, 
             selectedLineIdx,
-            lines: [createLine({x:200, y:50}, 'hello', 50, 'center', 'red')],
+            lines: [createLine(pos, 'hello', 50, 'center', 'black', 'Impact')],
             memeUrl
        }
        
 }
 
-function createLine(pos, txt, size, align, color){
+function createLine(pos, txt, size, align, color, font){
     return {
             pos,
             txt, 
             size,
             align, 
-            color
+            color, 
+            font
     }
 }
 
@@ -39,9 +40,10 @@ function setLineTxt(text) {
 }
 
 function addLine(pos) {
-    const line = createLine(pos, 'hello', 50, 'center', 'red')
+    const line = createLine(pos, 'hello', 50, 'center', 'red', 'Impact')
     gMeme.lines.push(line)
-    gMeme.selectedLineIdx += 1
+    if(gMeme.lines.length === 1) gMeme.selectedLineIdx = 0
+    else gMeme.selectedLineIdx += 1
 }
 
 function removeLine() {

@@ -14,8 +14,8 @@
             <h1 class="logo">memegen</h1>
             <nav>
                 <ul class="header-ul clean-list flex">
-                    <li>Gallery</li>
-                    <li>Memes</li>
+                    <li onclick="onMoveToGallery(this)" class="gallery-li curr-page">Gallery</li>
+                    <li onclick="onMoveToMemes(this)" class="memes-li">Memes</li>
                     <li>About</li>
                 </ul>
             </nav>
@@ -26,6 +26,7 @@
             <input type="text" list="keyword" class="keyword-text" name="keyword" placeholder="Enter search keyword" autocomplete="off" oninput="renderOptionKeyword(this)"> 
             <datalist id="keyword">
             </datalist>
+            <span class="popularKeyword grid"></span>
         </section>
         <div class="container-imgs grid">
         </div>
@@ -51,16 +52,16 @@
                 </div>
                 <div class="flex justify-center space-between">
                     <input type="color" value="#ff0000" oninput="onSetColorText(this)">
-                    <select id="impact-select">
+                    <select id="impact-select" onchange="onChangeFont(this)">
+                        <option value="Impact">Impact</option>
                         <option value="Arial">Arial</option>
                         <option value="Garamond">Garamond</option>
-                        <option value="Impact">Impact</option>
                     </select>
                 </div>
                 <div class="div-sds flex justify-center space-between">
-                    <button>Share</button>
-                    <button>Download</button>
-                    <button onclick="onSaveMeme()">Save</button>
+                    <button onclick="onSaveShareDownloadMeme('share')">Share</button>
+                    <button onclick="onSaveShareDownloadMeme('download')">Download</button>
+                    <button onclick="onSaveShareDownloadMeme('save')">Save</button>
                 </div>
             </div>
         </section>

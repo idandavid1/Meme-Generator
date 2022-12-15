@@ -43,6 +43,10 @@ button {
     font-size: 40px
 }
 
+a {
+    text-decoration: none;
+}
+
 .editor select{
     width: 220px;
     border-radius: 10px;

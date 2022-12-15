@@ -2,6 +2,14 @@
 .gallery {
     min-height: 80vh;
     background-color: var(--clr3);
+    color: var(--clr2)
+}
+
+.popularKeyword{
+    margin-left: 20px;
+    width: 80vw;
+    gap: 10px;
+    grid-template-columns: repeat(5, 1fr);
 }
 
 .container-imgs {
@@ -14,7 +22,7 @@
     background-color: var(--clr1);
 }
 .gallery input {
-    width: 250px;
+    width: 20vw;
     border:none;
     border-bottom: 1px solid black;
     border-radius: 0;
