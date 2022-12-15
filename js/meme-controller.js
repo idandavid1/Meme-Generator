@@ -1,5 +1,6 @@
 'use strict'
 
+let gIconIndex
 let gIsSaveShareDownload
 let gEnd
 let gElCanvas
@@ -19,6 +20,8 @@ function initMemePage(input, fromStr){
     gIsMove = false
     gEnd = false
     addListeners()
+    gIconIndex = 0
+    onRenderIcons()
 }
 
 function onRenderMeme() {
@@ -239,4 +242,20 @@ function onChangeFont(elFont) {
     const meme = getMeme()
     meme.lines[meme.selectedLineIdx].font = elFont.value
     onRenderMeme()
+}
+
+function onRenderIcons() {
+    let strHTML = `<img onclick="changeIcon(${-1})" style="width: 30px;" src="icons/left.png">`
+    for(let i = gIconIndex; i < gIconIndex + 3; i++) {
+        strHTML += `<img src="icons/${i + 1}.png">`
+    }
+    strHTML += `<img onclick="changeIcon(${1})" style="width: 30px; "src="icons/right.png">`
+    document.querySelector('.icon-container').innerHTML = strHTML
+} 
+
+function changeIcon(change) {
+    if(gIconIndex === 0 && change === -1) return
+    if(gIconIndex === 3 && change === 1) return
+    gIconIndex += change
+    onRenderIcons()
 }

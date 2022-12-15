@@ -3,8 +3,20 @@
     background-color: var(--clr3);
 }
 
+.icon-container {
+    width: 330px;
+    height: 135px;
+    background-color: var(--clr1);
+    border-radius: 10px;
+    border: 1px solid var(--clr2);
+}
+
+.icon-container img{
+    width: 65px;
+    height: auto;
+}
+
 .change-meme {
-    height: 500px;
     gap: 20px;
 }
 

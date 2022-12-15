@@ -6,6 +6,5 @@ function onRenderMemes() {
         acc.push(`<img onclick="initMemePage(${index}, 'meme')" src="${meme.memeUrl}">`)
         return acc
     }, [])
-    console.log('strHTMLs:', strHTMLs)
     document.querySelector('.memes .container-imgs').innerHTML = strHTMLs.join('')
 }

@@ -10,23 +10,27 @@
 </head>
 <body onload="OnInit()">
     <header>
-        <div class="div-container flex align-center space-between layout">
+        <div class="header-div flex space-between layout">
+            <div class="div-container flex flex-column justify-center space-between">
             <h1 class="logo">memegen</h1>
             <nav>
-                <ul class="header-ul clean-list flex">
+                <ul class="header-ul clean-list flex-column">
                     <li onclick="onMoveToGallery(this)" class="gallery-li curr-page">Gallery</li>
                     <li onclick="onMoveToMemes(this)" class="memes-li">Memes</li>
                     <li>About</li>
                 </ul>
             </nav>
         </div>
+        <button class="menu-toggle-btn" onclick="toggleMenu(this)">☰</button>
+        </div>
+
     </header>
     <section class="gallery layout">
-        <section class="keyword flex align-center">
+        <section class="keyword flex flex-column align-center">
             <input type="text" list="keyword" class="keyword-text" name="keyword" placeholder="Enter search keyword" autocomplete="off" oninput="renderOptionKeyword(this)"> 
             <datalist id="keyword">
             </datalist>
-            <span class="popularKeyword grid"></span>
+            <div class="popularKeyword grid"></div>
         </section>
         <div class="container-imgs grid">
         </div>
@@ -58,6 +62,7 @@
                         <option value="Garamond">Garamond</option>
                     </select>
                 </div>
+                <div class="icon-container flex space-between align-center"></div>
                 <div class="div-sds flex justify-center space-between">
                     <button onclick="onSaveShareDownloadMeme('share')">Share</button>
                     <button onclick="onSaveShareDownloadMeme('download')">Download</button>
@@ -66,7 +71,7 @@
             </div>
         </section>
         </section>
-        <section class="memes layout">
+        <section class="memes layout" hidden>
             <div class="container-imgs grid">
             </div>
         </section>

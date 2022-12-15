@@ -22,3 +22,16 @@ function onMoveToMemes(){
     onRenderMemes()
 }
 
+function toggleMenu(elButton) {
+    const elHeader = document.querySelector('header')
+    if(elButton.innerText === 'X') {
+        elHeader.querySelector('nav').style.display = 'none'
+        elButton.innerText = '☰'
+        elHeader.style.height = '10vh'
+    } else {
+        elHeader.querySelector('nav').style.display = 'block'
+        elButton.innerText = 'X'
+        elHeader.style.height = '40vh'
+    }
+}
+

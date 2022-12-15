@@ -39,7 +39,6 @@ function createGallery() {
 }
 
 function getImgs() {
-    console.log('acc:')
     if(!gFilterKeyword) return gImgs
     const keywords = getRightKeyword(gFilterKeyword)
     return gImgs.reduce((acc, img) => {
@@ -71,6 +70,7 @@ function getRightKeyword(input) {
 function updateMap(keyWord){
     if(gKeywordSearchCountMap[keyWord]) gKeywordSearchCountMap[keyWord] += 1
     else gKeywordSearchCountMap[keyWord] = 1
+    saveToStorage(KEYCOUNTMAP, gKeywordSearchCountMap)
 }
 
 function updateFilter(input) {

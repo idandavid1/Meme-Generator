@@ -6,6 +6,11 @@ header {
     color: var(--clr1);
 }
 
+header button {
+    background-color: var(--clr0);
+    border: 0;
+}
+
 li {
     display: flex;
     align-items: center;
@@ -25,4 +30,25 @@ li:hover {
 .curr-page {
     color: var(--clr2);
     border-bottom: 4px solid var(--clr2);
+}
+
+header nav {
+    display: none;
+}
+
+@media (min-width: 900px) {
+    .div-container {
+        flex-direction: row;
+        width: 100%;
+    }
+    .header-ul {
+        display: flex;
+        flex-direction: row;
+    }
+    header button {
+        display: none;
+    }
+    header nav {
+        display: block;
+    }
 }
