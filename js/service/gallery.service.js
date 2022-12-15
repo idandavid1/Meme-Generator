@@ -1,6 +1,7 @@
 'use strict'
 
 let gImgs = createGallery()
+let gFilterKeyword = ''
 
 function createGallery() {
     return [
@@ -25,10 +26,30 @@ function createGallery() {
     ]
 }
 
-function getImgs(){
-    return gImgs
+function getImgs() {
+    if(!gFilterKeyword) return gImgs
+    const keywords = getRightKeyword(gFilterKeyword)
+    return gImgs.reduce((acc, img) => {
+        img.keywords.forEach(keyword => {
+            if(keywords.includes(keyword)) acc.push(img)  
+        })
+        return acc
+    }, []) 
 }
 
 function findImgById(imgId) {
     return gImgs.find(img => img.id === imgId)
+}
+
+function getRightKeyword(input) {
+    gFilterKeyword = input
+    return gImgs.reduce((acc, img) => {
+        const keywords = img.keywords
+        keywords.forEach(keyword => {
+            if(!keyword.indexOf(input)) {
+                if(!acc.includes(keyword)) acc.push(keyword)
+            } 
+        })
+        return acc
+    }, [])
 }

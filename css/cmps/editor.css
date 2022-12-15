@@ -30,9 +30,9 @@ input {
     width: 210px;
 }
 
+
 button {
     display: flex;
-    margin-left: 20px;
     height: 60px;
     width: 60px;
     border-radius: 10px;
@@ -41,6 +41,19 @@ button {
     justify-content: center;
     cursor: pointer;
     font-size: 40px
+}
+
+.editor select{
+    width: 220px;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.div-sds button {
+    background-color: var(--clr0);
+    width: 120px;
+    font-size: 20px;
+    color: var(--clr1);
 }
 
 @media (min-width: 600px) {

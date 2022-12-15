@@ -1,12 +1,21 @@
 'use strict'
 
+const MEMESKEY = 'memes'
 let gMeme
+let gMemes = createMemes()
 
-function createMeme(imgId, selectedLineIdx = 0){
+function createMemes(){
+    let memes = loadFromStorage(MEMESKEY)
+    if(!memes) memes = []
+    return memes
+}
+
+function createMeme(imgId, selectedLineIdx = 0, memeUrl = ''){
     gMeme =  { 
             selectedImgId: imgId, 
             selectedLineIdx,
-            lines: [createLine({x:200, y:50}, 'hello', 50, 'center', 'red')] 
+            lines: [createLine({x:200, y:50}, 'hello', 50, 'center', 'red')],
+            memeUrl
        }
        
 }
@@ -45,4 +54,16 @@ function isHaveLines(){
     return gMeme.lines.length > 0 
 }
 
+function saveMeme(meme) {
+    if(!gMemes.includes(meme)) gMemes.push(meme)
+    saveToStorage(MEMESKEY, gMemes)
+}
+
+function getMemes() {
+    return gMemes
+}
+
+function initMeme(index) {
+    gMeme = gMemes[index]
+}
 

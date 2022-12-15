@@ -1,7 +1,27 @@
 
+.gallery {
+    min-height: 80vh;
+    background-color: var(--clr3);
+}
+
 .container-imgs {
     grid-template-columns: 1fr 1fr;
     gap: 10;
+}
+
+.keyword {
+    height: 160px;
+    background-color: var(--clr1);
+}
+.gallery input {
+    width: 250px;
+    border:none;
+    border-bottom: 1px solid black;
+    border-radius: 0;
+}
+
+.gallery input:focus {
+    outline: 0 none;
 }
 
 @media (min-width: 600px) {
