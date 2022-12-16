@@ -5,7 +5,7 @@
     margin-right: auto;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 610px) {
     .layout {
         max-width: var(--s);
     }

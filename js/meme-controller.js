@@ -12,6 +12,7 @@ const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 function initMemePage(input, fromStr){
     gElCanvas = document.getElementById('my-canvas')
     gCtx = gElCanvas.getContext('2d')
+    onFitCanvasHightToImg(input, fromStr)
     document.querySelector('.gallery').hidden = true;
     document.querySelector('.memes').hidden = true;
     document.querySelector('.editor').hidden = false;
@@ -306,6 +307,23 @@ function onRenderIcons(){
     icons.forEach(icon => {
         onRenderIcon(icon.pos, icon.url)
     })
+}
+
+function onFitCanvasHightToImg(input, fromStr) {
+    let url
+    if(fromStr === 'gallery') {
+        const img = getImgById(input)
+        url = img.url
+    }
+    else {
+        initMeme(input)
+        const meme = getMeme()
+        url = meme.memeUrl
+    } 
+    const elImg = new Image()
+    elImg.src = url
+    const height = (elImg.height * gElCanvas.width) / elImg.width
+    gElCanvas.height = height
 }
 
 

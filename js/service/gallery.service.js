@@ -76,3 +76,7 @@ function updateMap(keyWord){
 function updateFilter(input) {
     gFilterKeyword = input
 }
+
+function getImgById(imgId) {
+    return gImgs.find(img => img.id === imgId)
+}

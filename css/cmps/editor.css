@@ -72,7 +72,7 @@ a {
     color: var(--clr1);
 }
 
-@media (min-width: 600px) {
+@media (min-width: 610px) {
     .text {
         width: 370px;
     }

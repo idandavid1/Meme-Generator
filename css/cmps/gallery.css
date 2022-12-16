@@ -12,8 +12,9 @@
 }
 
 .container-imgs {
-    grid-template-columns: 1fr 1fr;
-    gap: 10;
+    column-count: 2;
+    column-gap: 10px;
+    padding: 10px;
 }
 
 .keyword {
@@ -33,13 +34,9 @@
 }
 
 
-@media (min-width: 600px) {
+@media (min-width: 610px) {
     .container-imgs {
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 10;
-    }
-    img {
-        width: 190px;
+        column-count: 3;
     }
     .popularKeyword{
         grid-template-columns: repeat(5, 1fr);
@@ -48,11 +45,7 @@
 
 @media (min-width: 900px) {
     .container-imgs {
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 10;
-    }
-    img {
-        width: 290px;
+        column-count: 3;
     }
     .gallery input {
         width: 20vw;
@@ -71,11 +64,7 @@
 
 @media (min-width: 1200px) {
     .container-imgs {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        gap: 10;
-    }
-    img {
-        width: 290px;
+        column-count: 4;
     }
     .popularKeyword{
         grid-template-columns: repeat(5, 1fr);
