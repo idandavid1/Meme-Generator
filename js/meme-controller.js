@@ -15,6 +15,8 @@ function initMemePage(input, fromStr){
     document.querySelector('.gallery').hidden = true;
     document.querySelector('.memes').hidden = true;
     document.querySelector('.editor').hidden = false;
+    document.querySelector('.gallery-li').classList.remove('curr-page')
+    document.querySelector('.memes-li').classList.remove('curr-page')
     if(fromStr === 'gallery') createMeme(input, {x: gElCanvas.width / 2 , y: 50})
     else initMeme(input)
     onRenderMeme()
