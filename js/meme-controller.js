@@ -233,7 +233,7 @@ function onSaveShareDownloadMeme(str) {
 function onLoadMeme(){
     if(gIsSaveShareDownload === 'save'){
         const meme = getMeme()
-        meme.memeUrl =  gElCanvas.toDataURL('image/png')
+        meme.memeUrl =  gElCanvas.toDataURL('image/jpeg')
         saveMeme(meme)
         onMoveToMemes()
     } else if(gIsSaveShareDownload === 'download'){
