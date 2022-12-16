@@ -23,11 +23,10 @@
         </div>
         <button class="menu-toggle-btn" onclick="toggleMenu(this)">☰</button>
         </div>
-
     </header>
     <section class="gallery layout">
         <section class="keyword flex flex-column align-center">
-            <input type="text" list="keyword" class="keyword-text" name="keyword" placeholder="Enter search keyword" autocomplete="off" oninput="renderOptionKeyword(this)"> 
+            <input type="text" list="keyword" class="keyword-text" name="keyword" placeholder="Enter search keyword" autocomplete="off" oninput="onRenderOptionKeyword(this)"> 
             <datalist id="keyword">
             </datalist>
             <div class="popularKeyword grid"></div>

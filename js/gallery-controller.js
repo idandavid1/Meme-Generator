@@ -1,6 +1,6 @@
 'use strict'
 
-function renderGallery(){
+function onRenderGallery(){
     const imgs = getImgs()
     const strHTMLs = imgs.reduce((acc, img) => {
         acc.push(`<img onclick="initMemePage(${img.id}, 'gallery')" src="${img.url}">`) 
@@ -10,7 +10,7 @@ function renderGallery(){
     document.querySelector('.gallery .container-imgs').innerHTML = strHTMLs.join('')
 }
 
-function renderOptionKeyword(elInput) {
+function onRenderOptionKeyword(elInput) {
     const input = elInput.value
     const keywords = getRightKeyword(input)
     const strHTMLs = keywords.reduce((acc, keyword) => {
@@ -19,11 +19,11 @@ function renderOptionKeyword(elInput) {
     }, [])
 
     document.getElementById('keyword').innerHTML = strHTMLs.join('')
-    renderGallery()
-    renderCountMap()
+    onRenderGallery()
+    onRenderCountMap()
 }
 
-function renderCountMap() {
+function onRenderCountMap() {
     const countMap = getCountMap()
     let strHTML = ''
     for(var key in countMap){
@@ -36,7 +36,7 @@ function renderCountMap() {
 function onUpdateMap(key) {
     document.querySelector('.keyword-text').value = key
     updateFilter(key)
-    renderGallery()
+    onRenderGallery()
     updateMap(key)
-    renderCountMap()
+    onRenderCountMap()
 }

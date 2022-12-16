@@ -41,7 +41,7 @@ function setLineTxt(text) {
 }
 
 function addLine(pos) {
-    const line = createLine(pos, 'hello', 50, 'center', 'red', 'Impact')
+    const line = createLine(pos, 'hello', 50, 'center', 'black', 'Impact')
     gMeme.lines.push(line)
     if(gMeme.lines.length === 1) gMeme.selectedLineIdx = 0
     else gMeme.selectedLineIdx += 1

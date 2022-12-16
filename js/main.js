@@ -1,8 +1,8 @@
 'use strict'
 
 function OnInit(){
-    renderGallery()
-    renderCountMap()
+    onRenderGallery()
+    onRenderCountMap()
 }
 
 function onMoveToGallery(){

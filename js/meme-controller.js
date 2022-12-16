@@ -212,17 +212,13 @@ function isTextBoxClicked(posClick) {
 }
 
 function isIconClick(posClick) {
-    console.log('posClick:', posClick)
     const meme = getMeme()
     const icons = meme.icons
     return icons.find(icon => {
         const pos = icon.pos
-        console.log('pos:', pos)
-
         return pos.x < posClick.x && (pos.x + 60) > posClick.x &&
                pos.y < posClick.y && (pos.y + 60) > posClick.y
-    })
-           
+    })      
 }
 
 function onSaveShareDownloadMeme(str) {
@@ -244,7 +240,6 @@ function onLoadMeme(){
         link.href = img
         link.click()
         onMoveToGallery()
-    
     } else {
         const imgDataUrl = gElCanvas.toDataURL('image/jpeg')
         function onSuccess(uploadedImgUrl) {
@@ -266,7 +261,6 @@ function doUploadImg(imgDataUrl, onSuccess) {
             onSuccess(url)
         })
 }
-
 
 function onChangeFont(elFont) {
     const meme = getMeme()
