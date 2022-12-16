@@ -15,7 +15,8 @@ function createMeme(imgId, pos, selectedLineIdx = 0, memeUrl = ''){
             selectedImgId: imgId, 
             selectedLineIdx,
             lines: [createLine(pos, 'hello', 50, 'center', 'black', 'Impact')],
-            memeUrl
+            memeUrl,
+            icons: []
        }
        
 }
@@ -68,4 +69,10 @@ function getMemes() {
 function initMeme(index) {
     gMeme = gMemes[index]
 }
+
+function createIcon(pos, iconId, url){
+    gMeme.icons.push({iconId, pos, url})
+}
+
+
 

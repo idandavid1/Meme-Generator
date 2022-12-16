@@ -1,5 +1,6 @@
 'use strict'
 
+let gStartPos
 let gIconIndex
 let gIsSaveShareDownload
 let gEnd
@@ -21,7 +22,7 @@ function initMemePage(input, fromStr){
     gEnd = false
     addListeners()
     gIconIndex = 0
-    onRenderIcons()
+    onRenderIconsDIV()
 }
 
 function onRenderMeme() {
@@ -32,6 +33,7 @@ function onRenderMeme() {
     elImg.onload = () => {
         gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
         renderLines()
+        onRenderIcons()
         if(!gEnd) renderTextBox()
         else onLoadMeme()
     }
@@ -149,19 +151,31 @@ function addTouchListeners() {
     gElCanvas.addEventListener('touchend', onUp)
 }
 
-function onDown() {
+function onDown(ev) {
     gIsMove = true
     document.body.style.cursor = 'grabbing'
+    const pos = getEvPos(ev)
+    gStartPos = pos
 }
 
 function onMove(ev) {
     if(!gIsMove) return 
     const pos = getEvPos(ev)
-    if (!isTextBoxClicked(pos)) return
-    const meme = getMeme()
-    meme.lines[meme.selectedLineIdx].pos = pos
+    const dx = pos.x - gStartPos.x
+    const dy = pos.y - gStartPos.y
+    const icon = isIconClick(pos)
+    if(icon) {
+        icon.pos.x += dx
+        icon.pos.y += dy
+    } else if (isTextBoxClicked(pos)) {
+        const meme = getMeme()
+        meme.lines[meme.selectedLineIdx].pos.x += dx
+        meme.lines[meme.selectedLineIdx].pos.y += dy
+    }
     onRenderMeme()
+    gStartPos = pos
 }
+   
 
 function onUp() {
     document.body.style.cursor = 'grab'
@@ -195,6 +209,20 @@ function isTextBoxClicked(posClick) {
        posClick.y > y && posClick.y < y + size) return true
 
        return false
+}
+
+function isIconClick(posClick) {
+    console.log('posClick:', posClick)
+    const meme = getMeme()
+    const icons = meme.icons
+    return icons.find(icon => {
+        const pos = icon.pos
+        console.log('pos:', pos)
+
+        return pos.x < posClick.x && (pos.x + 60) > posClick.x &&
+               pos.y < posClick.y && (pos.y + 60) > posClick.y
+    })
+           
 }
 
 function onSaveShareDownloadMeme(str) {
@@ -244,18 +272,42 @@ function onChangeFont(elFont) {
     onRenderMeme()
 }
 
-function onRenderIcons() {
-    let strHTML = `<img onclick="changeIcon(${-1})" style="width: 30px;" src="icons/left.png">`
+function onRenderIconsDIV() {
+    let strHTML = `<img onclick="changeIconDiv(${-1})" style="width: 30px;" src="icons/left.png">`
     for(let i = gIconIndex; i < gIconIndex + 3; i++) {
-        strHTML += `<img src="icons/${i + 1}.png">`
+        strHTML += `<img onclick="onCreateIcon(${i}, 'icons/${i + 1}.png')" src="icons/${i + 1}.png">`
     }
-    strHTML += `<img onclick="changeIcon(${1})" style="width: 30px; "src="icons/right.png">`
+    strHTML += `<img onclick="changeIconDiv(${1})" style="width: 30px; "src="icons/right.png">`
     document.querySelector('.icon-container').innerHTML = strHTML
 } 
 
-function changeIcon(change) {
+function changeIconDiv(change) {
     if(gIconIndex === 0 && change === -1) return
     if(gIconIndex === 3 && change === 1) return
     gIconIndex += change
     onRenderIcons()
 }
+
+function onCreateIcon(iconId, url) {
+    const pos = {x: gElCanvas.width / 2 - 30, y: gElCanvas.height / 2 - 30}
+    createIcon(pos, iconId, url)
+    onRenderIcon(pos, url)
+}
+
+function onRenderIcon(pos, url) {
+    const elImg = new Image()
+    elImg.src = url
+    elImg.onload = () => {
+        gCtx.drawImage(elImg, pos.x, pos.y, 60, 60)
+    }
+} 
+
+function onRenderIcons(){
+    const meme = getMeme()
+    const icons = meme.icons
+    icons.forEach(icon => {
+        onRenderIcon(icon.pos, icon.url)
+    })
+}
+
+
