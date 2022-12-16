@@ -22,7 +22,7 @@ function initMemePage(input, fromStr){
     gEnd = false
     addListeners()
     gIconIndex = 0
-    onRenderIconsDIV()
+    onRenderIconsDiv()
 }
 
 function onRenderMeme() {
@@ -237,22 +237,24 @@ function onLoadMeme(){
         meme.memeUrl =  gElCanvas.toDataURL('image/png')
         saveMeme(meme)
         onMoveToMemes()
-    }
-    else if(gIsSaveShareDownload === 'download'){
+    } else if(gIsSaveShareDownload === 'download'){
         const img =  gElCanvas.toDataURL('image/jpeg')
         var link = document.createElement('a')
         link.download = "my-image.png"
         link.href = img
         link.click()
-    }
-    else {
+        onMoveToGallery()
+    
+    } else {
         const imgDataUrl = gElCanvas.toDataURL('image/jpeg')
         function onSuccess(uploadedImgUrl) {
             const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
             window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}`)
         }
         doUploadImg(imgDataUrl, onSuccess)
-        }
+        onMoveToGallery()
+    }
+    
 }
 
 function doUploadImg(imgDataUrl, onSuccess) {
@@ -272,7 +274,7 @@ function onChangeFont(elFont) {
     onRenderMeme()
 }
 
-function onRenderIconsDIV() {
+function onRenderIconsDiv() {
     let strHTML = `<img onclick="changeIconDiv(${-1})" style="width: 30px;" src="icons/left.png">`
     for(let i = gIconIndex; i < gIconIndex + 3; i++) {
         strHTML += `<img onclick="onCreateIcon('icons/${i + 1}.png')" src="icons/${i + 1}.png">`
@@ -285,7 +287,7 @@ function changeIconDiv(change) {
     if(gIconIndex === 0 && change === -1) return
     if(gIconIndex === 3 && change === 1) return
     gIconIndex += change
-    onRenderIcons()
+    onRenderIconsDiv()
 }
 
 function onCreateIcon(url) {

@@ -5,11 +5,11 @@ function OnInit(){
     renderCountMap()
 }
 
-function onMoveToGallery(el){
+function onMoveToGallery(){
     document.querySelector('.editor').hidden = true;
     document.querySelector('.memes').hidden = true;
     document.querySelector('.gallery').hidden = false;
-    el.classList.add('curr-page')
+    document.querySelector('.gallery-li').classList.add('curr-page')
     document.querySelector('.memes-li').classList.remove('curr-page')
 }
 
