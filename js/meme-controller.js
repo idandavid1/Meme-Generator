@@ -35,7 +35,7 @@ function onRenderMeme() {
         renderLines()
         onRenderIcons()
         if(!gEnd) renderTextBox()
-        else onLoadMeme()
+        else setTimeout(onLoadMeme , 1000) 
     }
 }
 
@@ -275,7 +275,7 @@ function onChangeFont(elFont) {
 function onRenderIconsDIV() {
     let strHTML = `<img onclick="changeIconDiv(${-1})" style="width: 30px;" src="icons/left.png">`
     for(let i = gIconIndex; i < gIconIndex + 3; i++) {
-        strHTML += `<img onclick="onCreateIcon(${i}, 'icons/${i + 1}.png')" src="icons/${i + 1}.png">`
+        strHTML += `<img onclick="onCreateIcon('icons/${i + 1}.png')" src="icons/${i + 1}.png">`
     }
     strHTML += `<img onclick="changeIconDiv(${1})" style="width: 30px; "src="icons/right.png">`
     document.querySelector('.icon-container').innerHTML = strHTML
@@ -288,9 +288,9 @@ function changeIconDiv(change) {
     onRenderIcons()
 }
 
-function onCreateIcon(iconId, url) {
+function onCreateIcon(url) {
     const pos = {x: gElCanvas.width / 2 - 30, y: gElCanvas.height / 2 - 30}
-    createIcon(pos, iconId, url)
+    createIcon(pos,url)
     onRenderIcon(pos, url)
 }
 
