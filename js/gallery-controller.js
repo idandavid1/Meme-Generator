@@ -7,8 +7,9 @@ function onRenderGallery(){
         acc.push(`<img onclick="initMemePage(${img.id}, 'gallery')" src="${img.url}">`) 
         return acc
     }, [])
-
-    document.querySelector('.gallery .container-imgs').innerHTML = strHTMLs.join('')
+    const strHTML = `<input type="file" id="selectedFile" onchange="onImgInput(event)" style="display: none;" />
+    <input type="button" class="button" value="+" onclick="document.getElementById('selectedFile').click();" />`
+    document.querySelector('.gallery .container-imgs').innerHTML = strHTMLs.join('') + strHTML
 }
 
 function onRenderOptionKeyword(elInput) {
@@ -49,4 +50,14 @@ function onUpdateMap(key) {
 function onRenderCountMapAllToggle(isRenderAll){
     gIsRenderAll = isRenderAll
     onRenderCountMap()
+}
+
+function onImgInput(ev) {
+    const reader = new FileReader()
+    reader.onload = (event) => {
+        createNewImage(event.target.result)
+        onRenderGallery()
+    }
+
+    reader.readAsDataURL(ev.target.files[0])
 }

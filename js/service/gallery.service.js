@@ -1,6 +1,7 @@
 'use strict'
 
 const KEYCOUNTMAP = 'countMap'
+const KEYGallery = 'gallery'
 let gKeywordSearchCountMap = createKeywordSearchCountMap()
 let gImgs = createGallery()
 let gFilterKeyword = ''
@@ -16,26 +17,31 @@ function getCountMap() {
 }
 
 function createGallery() {
-    return [
-        {id: 1, url: 'img/1.jpg', keywords: ['trump', 'politics']},
-        {id: 2, url: 'img/2.jpg', keywords: ['dog', 'animal']},
-        {id: 3, url: 'img/3.jpg', keywords: ['dog', 'baby', 'cute']},
-        {id: 4, url: 'img/4.jpg', keywords: ['cute', 'cat', 'computer']},
-        {id: 5, url: 'img/5.jpg', keywords: ['success', 'baby']},
-        {id: 6, url: 'img/6.jpg', keywords: ['history', 'wired']},
-        {id: 7, url: 'img/7.jpg', keywords: ['baby', 'cute', 'surprised']},
-        {id: 8, url: 'img/8.jpg', keywords: ['funny', 'magics']},
-        {id: 9, url: 'img/9.jpg', keywords: ['baby', 'cute', 'evil']},
-        {id: 10, url: 'img/10.jpg', keywords: ['funny', 'Obama', 'president']},
-        {id: 11, url: 'img/11.jpg', keywords: ['man', 'kiss']},
-        {id: 12, url: 'img/12.jpg', keywords: ['Haim', 'point']},
-        {id: 13, url: 'img/13.jpg', keywords: ['Leonardo', 'smile', 'cheers']},
-        {id: 14, url: 'img/14.jpg', keywords: []},
-        {id: 15, url: 'img/15.jpg', keywords: ['men', 'smile']},
-        {id: 16, url: 'img/16.jpg', keywords: ['men', 'smile']},
-        {id: 17, url: 'img/17.jpg', keywords: ['Putin', 'president', 'point']},
-        {id: 18, url: 'img/18.jpg', keywords: ['toy-store', 'movie']}
-    ]
+    let gallery = loadFromStorage(KEYGallery)
+    if(!gallery) {
+        gallery =  [
+            {id: 1, url: 'img/1.jpg', keywords: ['trump', 'politics']},
+            {id: 2, url: 'img/2.jpg', keywords: ['dog', 'animal']},
+            {id: 3, url: 'img/3.jpg', keywords: ['dog', 'baby', 'cute']},
+            {id: 4, url: 'img/4.jpg', keywords: ['cute', 'cat', 'computer']},
+            {id: 5, url: 'img/5.jpg', keywords: ['success', 'baby']},
+            {id: 6, url: 'img/6.jpg', keywords: ['history', 'wired']},
+            {id: 7, url: 'img/7.jpg', keywords: ['baby', 'cute', 'surprised']},
+            {id: 8, url: 'img/8.jpg', keywords: ['funny', 'magics']},
+            {id: 9, url: 'img/9.jpg', keywords: ['baby', 'cute', 'evil']},
+            {id: 10, url: 'img/10.jpg', keywords: ['funny', 'Obama', 'president']},
+            {id: 11, url: 'img/11.jpg', keywords: ['man', 'kiss']},
+            {id: 12, url: 'img/12.jpg', keywords: ['Haim', 'point']},
+            {id: 13, url: 'img/13.jpg', keywords: ['Leonardo', 'smile', 'cheers']},
+            {id: 14, url: 'img/14.jpg', keywords: []},
+            {id: 15, url: 'img/15.jpg', keywords: ['men', 'smile']},
+            {id: 16, url: 'img/16.jpg', keywords: ['men', 'smile']},
+            {id: 17, url: 'img/17.jpg', keywords: ['Putin', 'president', 'point']},
+            {id: 18, url: 'img/18.jpg', keywords: ['toy-store', 'movie']}
+        ]
+    }
+
+    return gallery
 }
 
 function getImgs() {
@@ -79,4 +85,9 @@ function updateFilter(input) {
 
 function getImgById(imgId) {
     return gImgs.find(img => img.id === imgId)
+}
+
+function createNewImage(url){
+    gImgs.push({id: (gImgs.length + 1), url, keywords: []})
+    saveToStorage(KEYGallery, gImgs)
 }
