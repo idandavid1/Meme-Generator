@@ -1,5 +1,6 @@
 'use strict'
 
+let gIsRenderAll = false
 function onRenderGallery(){
     const imgs = getImgs()
     const strHTMLs = imgs.reduce((acc, img) => {
@@ -23,16 +24,16 @@ function onRenderOptionKeyword(elInput) {
     onRenderCountMap()
 }
 
-function onRenderCountMap(isRenderAll = true) {
+function onRenderCountMap() {
     let counter = 1
     const countMap = getCountMap()
     let strHTML = ''
     for(let key in countMap){
         strHTML += `<span onclick="onUpdateMap('${key}')" style="font-size:${countMap[key]}px;">${key}</span>`
-        if(!isRenderAll && counter === 5) break
+        if(!gIsRenderAll && counter === 5) break
         counter++
     }
-    if(!isRenderAll) strHTML += `<span onclick="onRenderCountMapAllToggle(${true})">more...</span>`
+    if(!gIsRenderAll) strHTML += `<span onclick="onRenderCountMapAllToggle(${true})">more...</span>`
     else strHTML += `<span onclick="onRenderCountMapAllToggle(${false})">close</span>`
     document.querySelector('.popularKeyword').innerHTML = strHTML
 }
@@ -46,5 +47,6 @@ function onUpdateMap(key) {
 }
 
 function onRenderCountMapAllToggle(isRenderAll){
-    onRenderCountMap(isRenderAll)
+    gIsRenderAll = isRenderAll
+    onRenderCountMap()
 }
