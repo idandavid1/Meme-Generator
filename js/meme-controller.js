@@ -1,5 +1,6 @@
 'use strict'
 
+let gCountIcon
 let gStartPos
 let gIconIndex
 let gIsSaveShareDownload
@@ -25,6 +26,7 @@ function initMemePage(input, fromStr){
     gEnd = false
     addListeners()
     gIconIndex = 0
+    gCountIcon = 0
     onRenderIconsDiv()
 }
 
@@ -38,7 +40,6 @@ function onRenderMeme() {
         renderLines()
         onRenderIcons()
         if(!gEnd) renderTextBox()
-        else setTimeout(onLoadMeme , 1000) 
     }
 }
 
@@ -298,10 +299,14 @@ function onRenderIcon(pos, url) {
     elImg.src = url
     elImg.onload = () => {
         gCtx.drawImage(elImg, pos.x, pos.y, 60, 60)
+        gCountIcon++
+        if(gEnd && isLastIcon(gCountIcon)) onLoadMeme()
     }
 } 
 
 function onRenderIcons(){
+    gCountIcon = 0
+    if(gEnd && isLastIcon(gCountIcon)) onLoadMeme()
     const meme = getMeme()
     const icons = meme.icons
     icons.forEach(icon => {

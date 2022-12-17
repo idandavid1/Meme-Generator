@@ -23,14 +23,18 @@ function onRenderOptionKeyword(elInput) {
     onRenderCountMap()
 }
 
-function onRenderCountMap() {
+function onRenderCountMap(isRenderAll = true) {
+    let counter = 1
     const countMap = getCountMap()
     let strHTML = ''
-    for(var key in countMap){
+    for(let key in countMap){
         strHTML += `<span onclick="onUpdateMap('${key}')" style="font-size:${countMap[key]}px;">${key}</span>`
+        if(!isRenderAll && counter === 5) break
+        counter++
     }
+    if(!isRenderAll) strHTML += `<span onclick="onRenderCountMapAllToggle(${true})">more...</span>`
+    else strHTML += `<span onclick="onRenderCountMapAllToggle(${false})">close</span>`
     document.querySelector('.popularKeyword').innerHTML = strHTML
-    console.log('document.querySelector(.popularKeyword):', document.querySelector('.popularKeyword'))
 }
 
 function onUpdateMap(key) {
@@ -39,4 +43,8 @@ function onUpdateMap(key) {
     onRenderGallery()
     updateMap(key)
     onRenderCountMap()
+}
+
+function onRenderCountMapAllToggle(isRenderAll){
+    onRenderCountMap(isRenderAll)
 }

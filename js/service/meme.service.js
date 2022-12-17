@@ -74,5 +74,9 @@ function createIcon(pos, url){
     gMeme.icons.push({pos, url})
 }
 
+function isLastIcon(iconNumber){
+    return gMeme.icons.length === iconNumber
+}
+
 
 

@@ -11,6 +11,10 @@
     grid-template-columns: repeat(3, 1fr);
 }
 
+.popularKeyword span{
+    cursor: pointer;
+}
+
 .container-imgs {
     column-count: 2;
     column-gap: 10px;
