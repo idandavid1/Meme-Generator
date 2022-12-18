@@ -70,8 +70,8 @@ function initMeme(index) {
     gMeme = gMemes[index]
 }
 
-function createIcon(pos, img){
-    gMeme.icons.push({pos, img})
+function createIcon(pos, url){
+    gMeme.icons.push({pos, url})
 }
 
 function isLastIcon(iconNumber){

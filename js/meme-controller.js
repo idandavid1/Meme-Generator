@@ -1,5 +1,7 @@
 'use strict'
 
+let gIsSaveShareDownload
+let gCountIcons
 let gIconIndex
 let gStartPos
 let gElCanvas
@@ -23,6 +25,8 @@ function initMemePage(input, fromStr){
     gIsRenderBox = true
     addListeners()
     gIconIndex = 0
+    gCountIcons = 0
+    gIsSaveShareDownload = ''
     onRenderIconsDiv()
 }
 
@@ -232,8 +236,6 @@ function isIconClick(posClick) {
 
 function onSave() {
     gIsRenderBox = false
-    onRenderMeme()
-    console.log('222:')
     const meme = getMeme()
     meme.memeUrl =  gElCanvas.toDataURL('image/jpeg')
     saveMeme(meme)
@@ -242,7 +244,6 @@ function onSave() {
 
 function onDownload() {
     gIsRenderBox = false
-    onRenderMeme()
     const img =  gElCanvas.toDataURL('image/jpeg')
     var link = document.createElement('a')
     link.download = "my-image.png"
@@ -253,7 +254,6 @@ function onDownload() {
 
 function onShare() {
     gIsRenderBox = false
-    onRenderMeme()
     const imgDataUrl = gElCanvas.toDataURL('image/jpeg')
     function onSuccess(uploadedImgUrl) {
         const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
@@ -297,25 +297,27 @@ function changeIconDiv(change) {
 
 function onCreateIcon(url) {
     const pos = {x: gElCanvas.width / 2 - 30, y: gElCanvas.height / 2 - 30}
-    const img = new Image()
-    img.src = url
-    img.onload = () => {
-        createIcon(pos, img)
-        onRenderIcon(pos, img)
-    }
+    createIcon(pos, url)
+    onRenderIcon(pos, url)
 }
 
-function onRenderIcon(pos, img) {
-    gCtx.drawImage(img, pos.x, pos.y, 60, 60)
+function onRenderIcon(pos, url) {
+    const elImg = new Image()
+    elImg.src = url
+    elImg.onload = () => {
+        gCtx.drawImage(elImg, pos.x, pos.y, 60, 60)
+        gCountIcons++
+        if(gIsSaveShareDownload && isLastIcon(gCountIcons)) onLoadImgAction()
+    }
 } 
 
 function onRenderIcons(){
+    gCountIcons = 0
+    if(gIsSaveShareDownload && isLastIcon(gCountIcons)) onLoadImgAction()
     const meme = getMeme()
     const icons = meme.icons
     icons.forEach(icon => {
-        console.log('icon.img:', icon.img)
-        console.log('icon.pos:', icon.pos)
-        onRenderIcon(icon.pos, icon.img)
+        onRenderIcon(icon.pos, icon.url)
     })
 }
 
@@ -329,8 +331,6 @@ function onFitCanvasHightToImg(input, fromStr) {
         const meme = getMeme()
         url = meme.memeUrl
     } 
-    
-
     const elImg = new Image()
     elImg.src = url
     elImg.onload = () => {
@@ -352,5 +352,17 @@ function onChooseLine(posClick) {
             return onRenderMeme()
         }
     })
+}
+
+function onLoadImgAction() {
+    if(gIsSaveShareDownload === 'save') onSave()
+    else if(gIsSaveShareDownload === 'share') onShare()
+    else onDownload()
+}
+
+function onClickSaveShareDownload(str) {
+    console.log('str:', str)
+    gIsSaveShareDownload = str
+    onRenderMeme()
 }
 
