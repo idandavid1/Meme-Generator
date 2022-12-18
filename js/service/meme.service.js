@@ -1,11 +1,11 @@
 'use strict'
 
-const MEMESKEY = 'memes'
+const MEMES_KEY = 'memes'
 let gMeme
 let gMemes = createMemes()
 
 function createMemes(){
-    let memes = loadFromStorage(MEMESKEY)
+    let memes = loadFromStorage(MEMES_KEY)
     if(!memes) memes = []
     return memes
 }
@@ -59,7 +59,7 @@ function isHaveLines(){
 
 function saveMeme(meme) {
     if(!gMemes.includes(meme)) gMemes.push(meme)
-    saveToStorage(MEMESKEY, gMemes)
+    saveToStorage(MEMES_KEY, gMemes)
 }
 
 function getMemes() {
@@ -70,8 +70,8 @@ function initMeme(index) {
     gMeme = gMemes[index]
 }
 
-function createIcon(pos, url){
-    gMeme.icons.push({pos, url})
+function createIcon(pos, img, url){
+    gMeme.icons.push({pos, img, url})
 }
 
 function isLastIcon(iconNumber){
