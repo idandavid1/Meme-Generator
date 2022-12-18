@@ -28,21 +28,21 @@ function onRenderMeme() {
     const meme = getMeme()
     if(!gImg) {
         const img = findImgById(meme.selectedImgId)
-        const gImg = new Image()
-        gImg.src = img.url
-        gImg.onload = () => {
+        const elImg = new Image()
+        elImg.src = img.url
+        elImg.onload = () => {
             gCtx.drawImage(gImg, 0, 0, gElCanvas.width, gElCanvas.height)
             renderLines()
             onRenderIcons()
             renderTextBox()
         }
+        gImg = elImg
     } else {
             gCtx.drawImage(gImg, 0, 0, gElCanvas.width, gElCanvas.height)
             renderLines()
             onRenderIcons()
             if(gIsRenderBox) renderTextBox()
     }
-    
 }
 
 function renderLines(){
@@ -230,6 +230,7 @@ function isIconClick(posClick) {
 function onSave() {
     gIsRenderBox = false
     onRenderMeme()
+    console.log('222:')
     const meme = getMeme()
     meme.memeUrl =  gElCanvas.toDataURL('image/jpeg')
     saveMeme(meme)

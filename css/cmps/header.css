@@ -17,7 +17,7 @@ li {
     justify-content: center;
     width: 66px;
     height: 66px;
-    font-size: 19px;
+    font-size: 1.1875em;
     font-family: Montserrat;
     cursor: pointer;
 }
