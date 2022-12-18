@@ -1,6 +1,8 @@
 'use strict'
 
 let gIsRenderAll = false
+let gImgUrl
+
 function onRenderGallery(){
     const imgs = getImgs()
     const strHTMLs = imgs.reduce((acc, img) => {
@@ -55,9 +57,15 @@ function onRenderCountMapAllToggle(isRenderAll){
 function onImgInput(ev) {
     const reader = new FileReader()
     reader.onload = (event) => {
-        createNewImage(event.target.result)
-        onRenderGallery()
+        document.querySelector('.modal').style.display = 'flex'
+        gImgUrl = event.target.result
     }
-
     reader.readAsDataURL(ev.target.files[0])
+}
+
+function onCreateImg() {
+    const elModal = document.querySelector('.modal')
+    createNewImage(gImgUrl, elModal.querySelector('input').value.split(', '))
+    elModal.style.display = 'none'
+    onRenderGallery()
 }

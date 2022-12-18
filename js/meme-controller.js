@@ -133,8 +133,8 @@ function renderTextBox() {
     const meme = getMeme()
     const pos = meme.lines[meme.selectedLineIdx].pos
     const size = meme.lines[meme.selectedLineIdx].size
-    const x = 20
-    const width = gElCanvas.width - 40
+    const x = 10
+    const width = gElCanvas.width - 20
     const y = pos.y - size + 5
     gCtx.strokeStyle = 'black'
     gCtx.strokeRect(x, y, width, size)
@@ -162,6 +162,7 @@ function onDown(ev) {
     document.body.style.cursor = 'grabbing'
     const pos = getEvPos(ev)
     gStartPos = pos
+    onChooseLine(pos)
 }
 
 function onMove(ev) {
@@ -209,9 +210,9 @@ function isTextBoxClicked(posClick) {
     const meme = getMeme()
     const pos = meme.lines[meme.selectedLineIdx].pos
     const size = meme.lines[meme.selectedLineIdx].size
-    const width = gElCanvas.width - 40
+    const width = gElCanvas.width - 20
     const y = pos.y - size + 5
-    if(posClick.x > 20 && posClick.x < width && 
+    if(posClick.x > 10 && posClick.x < width && 
        posClick.y > y && posClick.y < y + size) return true
 
        return false
@@ -319,12 +320,12 @@ function onFitCanvasHightToImg(input, fromStr) {
     if(fromStr === 'gallery') {
         const img = getImgById(input)
         url = img.url
-    }
-    else {
+    } else {
         initMeme(input)
         const meme = getMeme()
         url = meme.memeUrl
     } 
+    
 
     const elImg = new Image()
     elImg.src = url
@@ -332,5 +333,20 @@ function onFitCanvasHightToImg(input, fromStr) {
         const height = (elImg.height * gElCanvas.width) / elImg.width
         gElCanvas.height = height
     }
+}
+
+function onChooseLine(posClick) {
+    const meme = getMeme()
+    meme.lines.forEach((line, idx) => {
+        const pos = line.pos
+        const size = line.size
+        const width = gElCanvas.width - 20
+        const y = pos.y - size + 5
+        if(posClick.x > 10 && posClick.x < width && 
+        posClick.y > y && posClick.y < y + size) {
+            meme.selectedLineIdx = idx
+            return onRenderMeme()
+        }
+    })
 }
 

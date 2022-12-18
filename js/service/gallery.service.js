@@ -1,13 +1,13 @@
 'use strict'
 
-const KEYCOUNTMAP = 'countMap'
-const KEYGallery = 'gallery'
+const KEY_COUNT_MAP = 'countMap'
+const KEY_GALLERY = 'gallery'
 let gKeywordSearchCountMap = createKeywordSearchCountMap()
 let gImgs = createGallery()
 let gFilterKeyword = ''
 
 function createKeywordSearchCountMap() {
-    let countMap = loadFromStorage(KEYCOUNTMAP)
+    let countMap = loadFromStorage(KEY_COUNT_MAP)
     if(!countMap) countMap = {'funny': 12,'cat': 16, 'baby': 10, 'dog': 15} 
     return countMap
 }
@@ -17,7 +17,7 @@ function getCountMap() {
 }
 
 function createGallery() {
-    let gallery = loadFromStorage(KEYGallery)
+    let gallery = loadFromStorage(KEY_GALLERY)
     if(!gallery) {
         gallery =  [
             {id: 1, url: 'img/1.jpg', keywords: ['trump', 'politics']},
@@ -76,7 +76,7 @@ function getRightKeyword(input) {
 function updateMap(keyWord){
     if(gKeywordSearchCountMap[keyWord]) gKeywordSearchCountMap[keyWord] += 1
     else gKeywordSearchCountMap[keyWord] = 1
-    saveToStorage(KEYCOUNTMAP, gKeywordSearchCountMap)
+    saveToStorage(KEY_COUNT_MAP, gKeywordSearchCountMap)
 }
 
 function updateFilter(input) {
@@ -87,7 +87,7 @@ function getImgById(imgId) {
     return gImgs.find(img => img.id === imgId)
 }
 
-function createNewImage(url){
-    gImgs.push({id: (gImgs.length + 1), url, keywords: []})
-    saveToStorage(KEYGallery, gImgs)
+function createNewImage(url, keywords){
+    gImgs.push({id: (gImgs.length + 1), url, keywords})
+    saveToStorage(KEY_GALLERY, gImgs)
 }

@@ -8,7 +8,13 @@
     <link rel="stylesheet" href="css/main.css">
     <title>Meme Generator</title>
 </head>
-<body onload="OnInit()">
+<body onload="onInit()">
+    <section class="flex justify-center" onchange="onCreateImg()">
+        <form class="modal flex flex-column justify-center align-center">
+            <label for="new-img-keyword">Enter keyword with a comma separator</label>
+            <input type="text" name="new-img-keyword" id="new-img-keyword">
+        </form>
+    </section>
     <header>
         <div class="header-div flex space-between layout">
             <div class="div-container flex flex-column justify-center space-between">

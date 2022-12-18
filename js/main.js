@@ -1,6 +1,6 @@
 'use strict'
 
-function OnInit(){
+function onInit(){
     onRenderGallery()
     onRenderCountMap()
 }
