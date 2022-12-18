@@ -22,6 +22,14 @@ function onMoveToMemes(){
     onRenderMemes()
 }
 
+function onMoveToMeme(){
+    document.querySelector('.gallery').hidden = true;
+    document.querySelector('.memes').hidden = true;
+    document.querySelector('.editor').hidden = false;
+    document.querySelector('.gallery-li').classList.remove('curr-page')
+    document.querySelector('.memes-li').classList.remove('curr-page')
+}
+
 function toggleMenu(elButton) {
     const elHeader = document.querySelector('header')
     if(elButton.innerText === 'X') {

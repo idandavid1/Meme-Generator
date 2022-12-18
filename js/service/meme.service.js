@@ -70,13 +70,14 @@ function initMeme(index) {
     gMeme = gMemes[index]
 }
 
-function createIcon(pos, url){
-    gMeme.icons.push({pos, url})
+function createIcon(pos, img){
+    gMeme.icons.push({pos, img})
 }
 
 function isLastIcon(iconNumber){
     return gMeme.icons.length === iconNumber
 }
+
 
 
 
