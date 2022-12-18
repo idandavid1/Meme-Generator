@@ -10,6 +10,8 @@ let gIsRenderBox
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
 function initMemePage(input, fromStr){
+    console.log('input:', input)
+    console.log('fromStr:', fromStr)
     gElCanvas = document.getElementById('my-canvas')
     gCtx = gElCanvas.getContext('2d')
     onMoveToMeme()
@@ -311,6 +313,8 @@ function onRenderIcons(){
     const meme = getMeme()
     const icons = meme.icons
     icons.forEach(icon => {
+        console.log('icon.img:', icon.img)
+        console.log('icon.pos:', icon.pos)
         onRenderIcon(icon.pos, icon.img)
     })
 }

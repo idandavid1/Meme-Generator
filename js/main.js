@@ -11,6 +11,7 @@ function onMoveToGallery(){
     document.querySelector('.gallery').hidden = false;
     document.querySelector('.gallery-li').classList.add('curr-page')
     document.querySelector('.memes-li').classList.remove('curr-page')
+    gImg = ''
 }
 
 function onMoveToMemes(){
@@ -20,6 +21,7 @@ function onMoveToMemes(){
     document.querySelector('.memes-li').classList.add('curr-page')
     document.querySelector('.gallery-li').classList.remove('curr-page')
     onRenderMemes()
+    gImg = ''
 }
 
 function onMoveToMeme(){
