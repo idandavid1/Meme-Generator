@@ -12,6 +12,7 @@ const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 function initMemePage(input, fromStr){
     gElCanvas = document.getElementById('my-canvas')
     gCtx = gElCanvas.getContext('2d')
+    gImg = ''
     onMoveToMeme()
     onFitCanvasHightToImg(input, fromStr)
     if(fromStr === 'gallery'){
